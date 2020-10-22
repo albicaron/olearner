@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 from olearner.olearner import PEHE, example_data
-from olearner.olearner import OLearner
+from olearner.olearner import OLearner, OTLearner
 
 from econml.metalearners import SLearner, TLearner, XLearner
 from econml.drlearner import DRLearner
@@ -15,9 +15,9 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 N, B = [1000, 200]
 
 models = {"S": np.zeros(N), "T": np.zeros(N), "X": np.zeros(N),
-          "DR": np.zeros(N), "O": np.zeros(N)}
+          "DR": np.zeros(N), "O": np.zeros(N), "OT": np.zeros(N)}
 PEHES = {"S": np.zeros(B), "T": np.zeros(B), "X": np.zeros(B),
-          "DR": np.zeros(B), "O": np.zeros(B)}
+          "DR": np.zeros(B), "O": np.zeros(B), "OT": np.zeros(B)}
 
 # @@@@@@@@@
 # Models
@@ -57,6 +57,11 @@ for i in range(B):
     myO.fit(myX, myY, myZ)
     models["O"] = myO.predict(myX)
 
+    # OT-Learner
+    myOT = OTLearner()
+    myOT.fit(myX, myY, myZ)
+    models["OT"] = myOT.predict(myX)
+
     # PEHES fill
     for j in models.keys():
         PEHES[j][i] = PEHE(ITE, models[j])
@@ -65,7 +70,7 @@ for i in range(B):
 # Evaluate PEHE for each model
 PEHE_final = {'S-Learner': np.mean(PEHES["S"]), 'T-Learner': np.mean(PEHES["T"]),
               'X-Learner': np.mean(PEHES["X"]), 'DR-Learner': np.mean(PEHES["DR"]),
-              'O-Learner': np.mean(PEHES["O"])}
+              'O-Learner': np.mean(PEHES["O"]), 'OT-Learner': np.mean(PEHES["OT"])}
 
 PEHE_final = pd.DataFrame(PEHE_final, index=["PEHE"])
 

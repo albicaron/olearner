@@ -18,3 +18,7 @@ library, that can be used as "base-learners" for the O-Learner algorithm.
 The subfolder also contains the `olearner\test_model.py` file, which contains a (extremely) short 
 comparison with other popular Meta-Learners on a simulated example with non-overlapping regions of the
 covariates space between the two treated groups. 
+
+The file `olearner_illustration.ipynb` briefly explains how the theory and how model is constructed.
+It also guides through the simulated example of `olearner\test_model.py`, to compare O-Learner with
+other methods.
