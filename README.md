@@ -4,8 +4,8 @@ The Overlap Learner (O-Learner) is a type of Meta-Learner
 [Caron et. al., 2020)](https://arxiv.org/pdf/2009.06472.pdf) based on the work on balancing weights 
 by [Li et. al. (2014)](https://arxiv.org/pdf/1404.1785.pdf), designed to estimate Individual Treatment Effects (ITE) and
 carry out policy learning/optimization in a reinforcement learning contextual bandits framework. The way the O-Learner works 
-compared to other "Direct Methods"  Meta-Learners (S-Learner, T-Learner, X-Learner, etc.) is that it constructs a 
-doubly-robust [(Dudik et. al., 2011)](https://icml.cc/2011/papers/554_icmlpaper.pdf) estimation procedure that makes use
+compared to other "Direct Methods"  Meta-Learners (S-Learner, T-Learner, X-Learner, etc.) is that it constructs a (asymptotically)
+doubly-robust ([Robins et. al., 2005](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1541-0420.2005.00377.x), [Dudik et. al., 2011](https://icml.cc/2011/papers/554_icmlpaper.pdf)) estimation procedure that makes use
 of balancing properties of the "overlap weights" scheme proposed in 
 [Li et. al. (2014)](https://arxiv.org/pdf/1404.1785.pdf) (instead of using Inverse Propensity Score 
 Weighting - IPW - such as in the doubly-robust learner), by first estimating a model for Propensity Scores estimation. The "overlap weights" 
